@@ -56,6 +56,8 @@ public class Jelly {
 		// Open a handle to the csgo process
 		handle = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_ALL_ACCESS, false, pid.getValue());
 
+		OffsetManager.initAll();
+		
 		// Save player address
 		Memory m = new Memory(4);
 		Pointer p = new Pointer(0);
@@ -65,13 +67,14 @@ public class Jelly {
 		System.out.println("Found local player: " + localPlayer);
 
 		// Save player team num
+		System.out.println("TeamNum offset: " +  NetVarOffsets.BasePlayer.iTeamNum);
 		Pointer.nativeValue(p, localPlayer + NetVarOffsets.BasePlayer.iTeamNum); // get team num so we can avoid teammates
 		Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
 		teamNum = m.getInt(0);
 		System.out.println("Team num: " + teamNum);
 
 		moduleManager = new ModuleManager();
-		OffsetManager.initAll();
+		
 		
 		running = true;
 	}

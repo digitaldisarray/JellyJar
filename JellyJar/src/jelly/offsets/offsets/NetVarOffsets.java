@@ -69,6 +69,8 @@ public class NetVarOffsets {
 		BasePlayer.lifeState = NetVars.byName("DT_BasePlayer", "m_lifeState");
 		BasePlayer.vecPunch = NetVars.byName("DT_BasePlayer", "m_aimPunchAngle");
 		BasePlayer.nModelIndex = NetVars.byName("DT_BasePlayer", "m_nModelIndex");
+		BasePlayer.iTeamNum = NetVars.byName("DT_BasePlayer", "m_iTeamNum");
+		
 
 		flFlashMaxAlpha = NetVars.byName("DT_CSPlayer", "m_flFlashMaxAlpha");
 		iShotsFired = NetVars.byName("DT_CSPlayer", "m_iShotsFired");

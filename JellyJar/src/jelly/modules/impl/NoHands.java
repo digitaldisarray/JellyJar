@@ -12,7 +12,6 @@ import jelly.offsets.offsets.NetVarOffsets;
 public class NoHands extends Module {
 	public void onLoop() {
 		
-		
 		Pointer p = new Pointer(0);
 		Pointer.nativeValue(p, Signatures.dwLocalPlayer + NetVarOffsets.BasePlayer.nModelIndex);
 		
