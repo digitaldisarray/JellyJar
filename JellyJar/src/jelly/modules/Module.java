@@ -1,0 +1,28 @@
+package jelly.modules;
+
+public abstract class Module {
+	private boolean enabled = false;
+	private String name;
+	
+	
+	public Module() {
+		this.name = this.getClass().getSimpleName();
+	}
+	
+	// Run every single program loop
+	public void onLoop() {
+		
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	public void toggle() {
+		enabled = !enabled;
+	}
+	
+	public String getName() {
+		return name;
+	}
+}
