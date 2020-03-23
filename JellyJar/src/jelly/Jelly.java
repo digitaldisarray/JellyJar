@@ -75,6 +75,8 @@ public class Jelly {
 
 		moduleManager = new ModuleManager();
 		
+		// Dump offsets (netvars only for now)
+		OffsetManager.dumpAll();
 		
 		running = true;
 	}
