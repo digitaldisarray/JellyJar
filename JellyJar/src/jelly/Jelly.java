@@ -11,6 +11,7 @@ import com.sun.jna.platform.win32.WinNT.HANDLE;
 import com.sun.jna.ptr.IntByReference;
 
 import jelly.modules.Module;
+import jelly.offsets.OffsetManager;
 import jelly.offsets.Signatures;
 import jelly.offsets.offsets.NetVarOffsets;
 
@@ -64,13 +65,14 @@ public class Jelly {
 		System.out.println("Found local player: " + localPlayer);
 
 		// Save player team num
-		Pointer.nativeValue(p, localPlayer + NetVarOffsets.iTeamNum); // get team num so we can avoid teammates
+		Pointer.nativeValue(p, localPlayer + NetVarOffsets.BasePlayer.iTeamNum); // get team num so we can avoid teammates
 		Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
 		teamNum = m.getInt(0);
 		System.out.println("Team num: " + teamNum);
 
 		moduleManager = new ModuleManager();
-
+		OffsetManager.initAll();
+		
 		running = true;
 	}
 

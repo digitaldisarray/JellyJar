@@ -79,6 +79,8 @@ public final class NetVars {
 			}
 			
 			if (propOffset != 0x0) {
+				// TODO: Dump line bellow to file with java formatting to make epic sdk
+//				System.out.println(className + ":" + propName + "->" + propOffset);
 				netVars.add(new NetVar(className, propName, propOffset));
 			}
 			

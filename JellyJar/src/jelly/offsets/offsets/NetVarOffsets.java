@@ -7,59 +7,68 @@ public class NetVarOffsets {
 	/**
 	 * Netvar offsets
 	 */
-	public static long nFallbackPaintKit = 0;
-	public static long nFallbackSeed = 0;
-	public static long nFallbackStatTrak = 0;
-	public static long iEntityQuality = 0;
-	public static long flFallbackWear = 0;
-	public static long iItemDefinitionIndex = 0;
-	public static long OriginalOwnerXuidLow = 0;
-	public static long iItemIDHigh = 0;
-	public static long iAccountID = 0;
-	public static long iViewModelIndex = 0;
-	public static long iWorldModelIndex = 0;
-	public static long iWorldDroppedModelIndex = 0;
-	public static long hViewModel = 0;
-	public static long nModelIndex = 0;
-	public static long fFlags = 0;
-	public static long iHealth = 0;
-	public static long nTickBase = 0;
-	public static long bIsScoped = 0;
-	public static long flNextPrimaryAttack = 0;
-	public static long iWeaponID = 0;
-	public static long vecViewOffset = 0;
-	public static long hActiveWeapon = 0;
-	public static long vecVelocity = 0;
-	public static long lifeState = 0;
-	public static long vecPunch = 0;
-	public static long flFlashMaxAlpha = 0;
-	public static long iShotsFired = 0;
-	public static long hMyWeapons = 0;
-	public static long iClip1 = 0;
-	public static long iClip2 = 0;
-	public static long bSpotted = 0;
-	public static long bSpottedByMask = 0;
-	public static long vecOrigin = 0;
-	public static long iTeamNum = 0;
-	public static long dwBoneMatrix = 0;
-	public static long iCrossHairID = 0;
-	public static long nSurvivalTeam = 0;
-	public static long dwModel = 0;
-	public static long dwIndex = 0;
-	public static long bMoveType = 0;
-	public static long flSurvivalStartTime = 0;
-	public static long m_SurvivalGameRuleDecisionTypes = 0;
-	public static long m_nModelIndex = 0; // TODO: Make classes and stuff with the types
+	public static long nFallbackPaintKit;
+	public static long nFallbackSeed;
+	public static long nFallbackStatTrak;
+	public static long iEntityQuality;
+	public static long flFallbackWear;
+	public static long iItemDefinitionIndex;
+	public static long OriginalOwnerXuidLow;
+	public static long iItemIDHigh;
+	public static long iAccountID;
+	public static long iViewModelIndex;
+	public static long iWorldModelIndex;
+	public static long iWorldDroppedModelIndex;
+	public static long hViewModel;
+	public static long nModelIndex;
+	public static long bIsScoped;
+	public static long flNextPrimaryAttack;
+	public static long iWeaponID;
+	public static long flFlashMaxAlpha;
+	public static long iShotsFired;
+	public static long hMyWeapons;
+	public static long iClip1;
+	public static long iClip2;
+	public static long dwBoneMatrix;
+	public static long iCrossHairID;
+	public static long nSurvivalTeam;
+	public static long dwModel;
+	public static long dwIndex;
+	public static long bMoveType;
+	public static long flSurvivalStartTime;
+	public static long m_SurvivalGameRuleDecisionTypes;
+	
+	public static class BasePlayer {
+		public static long fFlags;
+		public static long iHealth;
+		public static long iTeamNum;
+		public static long vecViewOffset;
+		public static long hActiveWeapon;
+		public static long vecVelocity;
+		public static long nTickBase;
+		public static long lifeState;
+		public static long vecPunch;
+		public static long nModelIndex;
+	}
+	
+	public static class BaseEntity {
+		public static long nModelIndex;
+		public static long bSpotted;
+		public static long bSpottedByMask;
+		public static long vecOrigin;
+		public static long iTeamNum;
+	}
 
 	public static void load() {
-		fFlags = NetVars.byName("DT_BasePlayer", "m_fFlags");
-		iHealth = NetVars.byName("DT_BasePlayer", "m_iHealth");
-		vecViewOffset = NetVars.byName("DT_BasePlayer", "m_vecViewOffset[0]");
-		hActiveWeapon = NetVars.byName("DT_BasePlayer", "m_hActiveWeapon");
-		nTickBase = NetVars.byName("DT_BasePlayer", "m_nTickBase");
-		vecVelocity = NetVars.byName("DT_BasePlayer", "m_vecVelocity[0]");
-		lifeState = NetVars.byName("DT_BasePlayer", "m_lifeState");
-		vecPunch = NetVars.byName("DT_BasePlayer", "m_aimPunchAngle");
+		BasePlayer.fFlags = NetVars.byName("DT_BasePlayer", "m_fFlags");
+		BasePlayer.iHealth = NetVars.byName("DT_BasePlayer", "m_iHealth");
+		BasePlayer.vecViewOffset = NetVars.byName("DT_BasePlayer", "m_vecViewOffset[0]");
+		BasePlayer.hActiveWeapon = NetVars.byName("DT_BasePlayer", "m_hActiveWeapon");
+		BasePlayer.nTickBase = NetVars.byName("DT_BasePlayer", "m_nTickBase");
+		BasePlayer.vecVelocity = NetVars.byName("DT_BasePlayer", "m_vecVelocity[0]");
+		BasePlayer.lifeState = NetVars.byName("DT_BasePlayer", "m_lifeState");
+		BasePlayer.vecPunch = NetVars.byName("DT_BasePlayer", "m_aimPunchAngle");
+		BasePlayer.nModelIndex = NetVars.byName("DT_BasePlayer", "m_nModelIndex");
 
 		flFlashMaxAlpha = NetVars.byName("DT_CSPlayer", "m_flFlashMaxAlpha");
 		iShotsFired = NetVars.byName("DT_CSPlayer", "m_iShotsFired");
@@ -73,11 +82,11 @@ public class NetVarOffsets {
 		iClip1 = NetVars.byName("DT_BaseCombatWeapon", "m_iClip1");
 		iClip2 = NetVars.byName("DT_BaseCombatWeapon", "m_iClip2");
 
-		bSpotted = NetVars.byName("DT_BaseEntity", "m_bSpotted");
-		bSpottedByMask = NetVars.byName("DT_BaseEntity", "m_bSpottedByMask");
-		vecOrigin = NetVars.byName("DT_BaseEntity", "m_vecOrigin");
-		iTeamNum = NetVars.byName("DT_BaseEntity", "m_iTeamNum");
-		m_nModelIndex = NetVars.byName("DT_BaseEntity", "m_nModelIndex");
+		BaseEntity.bSpotted = NetVars.byName("DT_BaseEntity", "m_bSpotted");
+		BaseEntity.bSpottedByMask = NetVars.byName("DT_BaseEntity", "m_bSpottedByMask");
+		BaseEntity.vecOrigin = NetVars.byName("DT_BaseEntity", "m_vecOrigin");
+		BaseEntity.iTeamNum = NetVars.byName("DT_BaseEntity", "m_iTeamNum");
+		BaseEntity.nModelIndex = NetVars.byName("DT_BaseEntity", "m_nModelIndex");
 
 		iWeaponID = NetVars.byName("DT_WeaponCSBase", "m_fAccuracyPenalty") + 0x2C;
 		iAccountID = NetVars.byName("DT_WeaponCSBase", "m_iAccountID");

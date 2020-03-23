@@ -27,7 +27,7 @@ public class Triggerbot extends Module {
 		long aimedAt = Integer.toUnsignedLong(m.getInt(0));
 		
 		// Get their team
-		Pointer.nativeValue(p, aimedAt + NetVarOffsets.iTeamNum);
+		Pointer.nativeValue(p, aimedAt + NetVarOffsets.BaseEntity.iTeamNum);
 		Kernel32.INSTANCE.ReadProcessMemory(Jelly.handle, p, m, 4, null);
 		
 		// TODO: Add settings for triggerbot keycode

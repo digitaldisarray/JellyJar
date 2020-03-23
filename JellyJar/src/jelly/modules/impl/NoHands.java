@@ -14,7 +14,7 @@ public class NoHands extends Module {
 		
 		
 		Pointer p = new Pointer(0);
-		Pointer.nativeValue(p, Signatures.dwLocalPlayer + NetVarOffsets.m_nModelIndex);
+		Pointer.nativeValue(p, Signatures.dwLocalPlayer + NetVarOffsets.BasePlayer.nModelIndex);
 		
 		Memory m = new Memory(4);
 		m.setInt(0, 20);

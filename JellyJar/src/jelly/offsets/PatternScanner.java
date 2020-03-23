@@ -48,6 +48,7 @@ public final class PatternScanner {
 				if ((flags & SUBTRACT) == SUBTRACT) {
 					i -= module.address();
 				}
+				System.out.println(module.name() + "->" + module.address());
 				return i + address_offset;
 			}
 		}
