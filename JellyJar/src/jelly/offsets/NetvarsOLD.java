@@ -2,7 +2,7 @@ package jelly.offsets;
 
 //To update just copy paste from hazedumper or something.
 
-public class Netvars {
+public class NetvarsOLD {
 	public static long cs_gamerules_data = 0x0;
 	public static long m_ArmorValue = 0xB368;
 	public static long m_Collision = 0x320;

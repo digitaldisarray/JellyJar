@@ -38,7 +38,7 @@ public final class OffsetManager {
 	}
 	
 	public static void initAll() {
-		loadNetVars();
+		NetVars.load();
 		loadOffsets();
 	}
 	
@@ -46,10 +46,6 @@ public final class OffsetManager {
 //		ClientOffsets.dump();
 //		EngineOffsets.dump();
 //		NetVarOffsets.dump();
-	}
-	
-	public static void loadNetVars() {
-		NetVars.load();
 	}
 	
 	public static void loadOffsets() {

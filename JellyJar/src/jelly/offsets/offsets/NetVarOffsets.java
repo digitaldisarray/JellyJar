@@ -1,10 +1,5 @@
 package jelly.offsets.offsets;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import com.github.jonatino.misc.Strings;
-
 import jelly.offsets.netvars.NetVars;
 
 public class NetVarOffsets {
@@ -54,6 +49,7 @@ public class NetVarOffsets {
 	public static long bMoveType = 0;
 	public static long flSurvivalStartTime = 0;
 	public static long m_SurvivalGameRuleDecisionTypes = 0;
+	public static long m_nModelIndex = 0; // TODO: Make classes and stuff with the types
 
 	public static void load() {
 		fFlags = NetVars.byName("DT_BasePlayer", "m_fFlags");
@@ -81,6 +77,7 @@ public class NetVarOffsets {
 		bSpottedByMask = NetVars.byName("DT_BaseEntity", "m_bSpottedByMask");
 		vecOrigin = NetVars.byName("DT_BaseEntity", "m_vecOrigin");
 		iTeamNum = NetVars.byName("DT_BaseEntity", "m_iTeamNum");
+		m_nModelIndex = NetVars.byName("DT_BaseEntity", "m_nModelIndex");
 
 		iWeaponID = NetVars.byName("DT_WeaponCSBase", "m_fAccuracyPenalty") + 0x2C;
 		iAccountID = NetVars.byName("DT_WeaponCSBase", "m_iAccountID");

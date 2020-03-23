@@ -1,13 +1,5 @@
 package jelly.offsets.offsets;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import com.github.jonatino.misc.Strings;
-
-import jelly.offsets.OffsetManager;
-import jelly.offsets.PatternScanner;
-
 public class ClientOffsets {
 	/**
 	 * Client.dll offsets

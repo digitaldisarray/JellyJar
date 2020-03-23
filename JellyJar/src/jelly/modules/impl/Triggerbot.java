@@ -7,8 +7,8 @@ import com.sun.jna.platform.win32.User32;
 
 import jelly.Jelly;
 import jelly.modules.Module;
-import jelly.offsets.Netvars;
 import jelly.offsets.Signatures;
+import jelly.offsets.offsets.NetVarOffsets;
 
 public class Triggerbot extends Module {
 
@@ -17,7 +17,7 @@ public class Triggerbot extends Module {
 		Pointer p = new Pointer(0);
 		
 		// Get crosshair id
-		Pointer.nativeValue(p, Jelly.localPlayer + Netvars.m_iCrosshairId);
+		Pointer.nativeValue(p, Jelly.localPlayer + NetVarOffsets.iCrossHairID);
 		Kernel32.INSTANCE.ReadProcessMemory(Jelly.handle, p, m, 4, null);
 		int id = m.getInt(0);
 		
@@ -27,7 +27,7 @@ public class Triggerbot extends Module {
 		long aimedAt = Integer.toUnsignedLong(m.getInt(0));
 		
 		// Get their team
-		Pointer.nativeValue(p, aimedAt + Netvars.m_iTeamNum);
+		Pointer.nativeValue(p, aimedAt + NetVarOffsets.iTeamNum);
 		Kernel32.INSTANCE.ReadProcessMemory(Jelly.handle, p, m, 4, null);
 		
 		// TODO: Add settings for triggerbot keycode
