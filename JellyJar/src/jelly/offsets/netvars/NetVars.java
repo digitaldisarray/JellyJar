@@ -54,18 +54,27 @@ public final class NetVars {
 		}
 	}
 
+//	private static final String VARS2DUMP = "DT_BaseAttributableItem DT_WeaponCSBase DT_WeaponBaseItem DT_WeaponC4 DT_PlantedC4 DT_CSPlayerResource DT_CSPlayer DT_DangerZone DT_DangerZoneController DT_World DT_Team DT_VGuiScreen DT_SceneEntity DT_PlayerResource DT_Item DT_FogController DT_BasePlayer DT_BaseEntity DT_BaseViewModel";
+//	private static final String VARS2DUMP = "DT_VGuiScreen DT_BasePlayer DT_BaseEntity DT_BaseViewModel";
+	private static final String VARS2DUMP = "DT_CSPlayer";
+	
+	
+	// NOTICE: No longer dumps, generates a NetVarOffsets class
 	public static void dump() {
 		// Start it
 		try {
-			Files.write(Paths.get("JavaNetVars.txt"), ("public static class NetVarOffsets {\n").getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get("JavaNetVars.txt"), ("public static class NetVarOffsets {\n").getBytes(),
+					StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		String currentClass = "";
 		for (NetVar netvar : netVars) {
+			if(!VARS2DUMP.contains(netvar.className))
+				continue;
+			
 			if (!currentClass.equals(netvar.className)) {
-
 				try {
 					// If it is not the first ever class
 					if (!currentClass.equals("")) {
@@ -87,7 +96,7 @@ public final class NetVars {
 
 			try {
 				Files.write(Paths.get("JavaNetVars.txt"),
-						("		public static int " + netvar.varName + " = " + netvar.offset + ";\n").getBytes(),
+						("		public static long " + netvar.varName + ";\n").getBytes(),
 						StandardOpenOption.APPEND);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -96,8 +105,17 @@ public final class NetVars {
 
 		// End it
 		try {
-			Files.write(Paths.get("JavaNetVars.txt"), ("	}").getBytes(), StandardOpenOption.APPEND);
-			Files.write(Paths.get("JavaNetVars.txt"), ("}").getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get("JavaNetVars.txt"), ("	}\n    public static void load() {\n").getBytes(), StandardOpenOption.APPEND);
+
+			// Create the init function
+			for (NetVar netvar : netVars) {
+				if(!VARS2DUMP.contains(netvar.className))
+					continue;
+				
+				Files.write(Paths.get("JavaNetVars.txt"), ("		" + netvar.className+ "." + netvar.varName + " = Netvars.byName(\"" + netvar.className + "\", \"" + netvar.varName + "\");\n").getBytes(), StandardOpenOption.APPEND);
+			}
+			
+			Files.write(Paths.get("JavaNetVars.txt"), ("	}\n}").getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -6,17 +6,16 @@ import com.sun.jna.platform.win32.Kernel32;
 
 import jelly.Jelly;
 import jelly.modules.Module;
-import jelly.offsets.Signatures;
 import jelly.offsets.offsets.NetVarOffsets;
 
 public class NoHands extends Module {
 	public void onLoop() {
 		
 		Pointer p = new Pointer(0);
-		Pointer.nativeValue(p, Signatures.dwLocalPlayer + NetVarOffsets.BasePlayer.nModelIndex);
+		Pointer.nativeValue(p, Jelly.localPlayer + NetVarOffsets.DT_BasePlayer.m_nModelIndex);
 		
 		Memory m = new Memory(4);
-		m.setInt(0, 20);
+		m.setInt(0, 0);
 		
 		Kernel32.INSTANCE.WriteProcessMemory(Jelly.handle, p, m, 4, null);
 		
