@@ -14,6 +14,11 @@ public abstract class Module {
 		
 	}
 	
+	// Run every time we loop through an entity
+	public void onEntityLoop(long entity) {
+		
+	}
+	
 	public boolean isEnabled() {
 		return enabled;
 	}

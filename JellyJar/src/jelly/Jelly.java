@@ -83,6 +83,9 @@ public class Jelly {
 
 	public void start() {
 
+		Pointer p = new Pointer(0);
+		Memory m = new Memory(4);
+		
 		// Main cheat loop
 		while (running) {
 
@@ -90,7 +93,19 @@ public class Jelly {
 //				if (module.isEnabled())
 				module.onLoop();
 			}
-
+			
+			// Loop through the entitylist
+			for (int i = 1; i < 64; i++) {
+				Pointer.nativeValue(p, client + Signatures.dwEntityList + i * 0x10);
+				Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
+				long entity = Integer.toUnsignedLong(m.getInt(0));
+				
+				for (Module module : moduleManager.getModules()) {
+//					if (module.isEnabled())
+					module.onEntityLoop(entity);
+				}
+			}
+			
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
