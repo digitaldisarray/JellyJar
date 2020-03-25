@@ -67,8 +67,8 @@ public class Jelly {
 		System.out.println("Found local player: " + localPlayer);
 
 		// Save player team num
-		System.out.println("TeamNum offset: " +  NetVarOffsets.DT_BasePlayer.m_iTeamNum);
-		Pointer.nativeValue(p, localPlayer + NetVarOffsets.DT_BasePlayer.m_iTeamNum); // get team num so we can avoid teammates
+		System.out.println("TeamNum offset: " +  NetVarOffsets.DT_BaseEntity.m_iTeamNum);
+		Pointer.nativeValue(p, localPlayer + NetVarOffsets.DT_BaseEntity.m_iTeamNum); // get team num so we can avoid teammates
 		Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
 		teamNum = m.getInt(0);
 		System.out.println("Team num: " + teamNum);

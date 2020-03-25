@@ -16,7 +16,9 @@ public class ModuleManager {
 		modules.add(new Triggerbot());
 		modules.add(new Glow());
 		modules.add(new NoHands());
-		modules.add(new Chams((byte) 128, (byte) 128, (byte) 128, 100));
+		
+		// RGB is 0-128
+		modules.add(new Chams((byte) 100, (byte) 0, (byte) 0, (byte) 0, (byte) 100, (byte) 0, 100f));
 	}
 
 	public ArrayList<Module> getModules() {
