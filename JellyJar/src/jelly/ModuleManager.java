@@ -7,6 +7,7 @@ import jelly.modules.impl.Chams;
 import jelly.modules.impl.Glow;
 import jelly.modules.impl.NoHands;
 import jelly.modules.impl.Triggerbot;
+import jelly.offsets.netvars.impl.NoFlash;
 
 public class ModuleManager {
 	ArrayList<Module> modules = new ArrayList<>();
@@ -18,7 +19,9 @@ public class ModuleManager {
 		modules.add(new NoHands());
 		
 		// RGB is 0-128? Maybe 255 but we might have to cast differently
-		modules.add(new Chams((byte) 255, (byte) 0, (byte) 0, (byte) 0, (byte) 100, (byte) 0, 50f));
+//		modules.add(new Chams((byte) 255, (byte) 0, (byte) 0, (byte) 0, (byte) 100, (byte) 0, 50f));
+		
+		modules.add(new NoFlash());
 	}
 
 	public ArrayList<Module> getModules() {
