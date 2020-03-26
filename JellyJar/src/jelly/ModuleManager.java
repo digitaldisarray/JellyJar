@@ -17,8 +17,8 @@ public class ModuleManager {
 		modules.add(new Glow());
 		modules.add(new NoHands());
 		
-		// RGB is 0-128
-		modules.add(new Chams((byte) 100, (byte) 0, (byte) 0, (byte) 0, (byte) 100, (byte) 0, 100f));
+		// RGB is 0-128? Maybe 255 but we might have to cast differently
+		modules.add(new Chams((byte) 255, (byte) 0, (byte) 0, (byte) 0, (byte) 100, (byte) 0, 50f));
 	}
 
 	public ArrayList<Module> getModules() {

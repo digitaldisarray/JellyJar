@@ -56,7 +56,8 @@ public final class NetVars {
 
 //	private static final String VARS2DUMP = "DT_BaseAttributableItem DT_WeaponCSBase DT_WeaponBaseItem DT_WeaponC4 DT_PlantedC4 DT_CSPlayerResource DT_CSPlayer DT_DangerZone DT_DangerZoneController DT_World DT_Team DT_VGuiScreen DT_SceneEntity DT_PlayerResource DT_Item DT_FogController DT_BasePlayer DT_BaseEntity DT_BaseViewModel";
 //	private static final String VARS2DUMP = "DT_VGuiScreen DT_BasePlayer DT_BaseEntity DT_BaseViewModel";
-	private static final String VARS2DUMP = "DT_CSPlayer";
+//	private static final String VARS2DUMP = "DT_CSPlayer";
+	private static final String VARS2DUMP = "";
 	
 	
 	// NOTICE: No longer dumps, generates a NetVarOffsets class

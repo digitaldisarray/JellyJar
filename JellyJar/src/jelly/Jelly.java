@@ -57,7 +57,7 @@ public class Jelly {
 		handle = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_ALL_ACCESS, false, pid.getValue());
 
 		OffsetManager.initAll();
-		
+
 		// Save player address
 		Memory m = new Memory(4);
 		Pointer p = new Pointer(0);
@@ -67,17 +67,18 @@ public class Jelly {
 		System.out.println("Found local player: " + localPlayer);
 
 		// Save player team num
-		System.out.println("TeamNum offset: " +  NetVarOffsets.DT_BaseEntity.m_iTeamNum);
-		Pointer.nativeValue(p, localPlayer + NetVarOffsets.DT_BaseEntity.m_iTeamNum); // get team num so we can avoid teammates
+		System.out.println("TeamNum offset: " + NetVarOffsets.DT_BaseEntity.m_iTeamNum);
+		Pointer.nativeValue(p, localPlayer + NetVarOffsets.DT_BaseEntity.m_iTeamNum); // get team num so we can avoid
+																						// teammates
 		Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
 		teamNum = m.getInt(0);
 		System.out.println("Team num: " + teamNum);
 
 		moduleManager = new ModuleManager();
-		
+
 		// Dump offsets (netvars only for now)
 		OffsetManager.dumpAll();
-		
+
 		running = true;
 	}
 
@@ -85,27 +86,28 @@ public class Jelly {
 
 		Pointer p = new Pointer(0);
 		Memory m = new Memory(4);
-		
+
 		// Main cheat loop
 		while (running) {
+
+			// Loop through the entitylist
+			for (int i = 1; i < 64; i++) {
+				Pointer.nativeValue(p, client + Signatures.dwEntityList + i * 0x10);
+				Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
+//				long entity = Integer.toUnsignedLong(m.getInt(0));
+				int entity = m.getInt(0);
+
+				for (Module module : moduleManager.getModules()) {
+//								if (module.isEnabled();
+					module.onEntityLoop(entity);
+				}
+			}
 
 			for (Module module : moduleManager.getModules()) {
 //				if (module.isEnabled())
 				module.onLoop();
 			}
-			
-			// Loop through the entitylist
-			for (int i = 1; i < 64; i++) {
-				Pointer.nativeValue(p, client + Signatures.dwEntityList + i * 0x10);
-				Kernel32.INSTANCE.ReadProcessMemory(handle, p, m, 4, null);
-				long entity = Integer.toUnsignedLong(m.getInt(0));
-				
-				for (Module module : moduleManager.getModules()) {
-//					if (module.isEnabled())
-					module.onEntityLoop(entity);
-				}
-			}
-			
+
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {

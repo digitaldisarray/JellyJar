@@ -7,5 +7,9 @@ public class Glow extends Module {
 	public void onLoop() {
 		
 	}
+	
+	public void onEntityLoop(int entity) {
+		
+	}
 
 }

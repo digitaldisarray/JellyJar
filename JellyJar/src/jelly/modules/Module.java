@@ -15,7 +15,7 @@ public abstract class Module {
 	}
 	
 	// Run every time we loop through an entity
-	public void onEntityLoop(long entity) {
+	public void onEntityLoop(int entity) {
 		
 	}
 	
