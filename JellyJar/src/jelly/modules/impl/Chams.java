@@ -40,12 +40,9 @@ public class Chams extends Module {
 	 * Write our own vmt to the entity and replace $phong with $ignorez
 	 * list of pointers to materials at around 0x04000000
 	 * 
-	 * 
-	 * 
-	 * https://www.youtube.com/watch?v=tVltnnh2Dso&lc=z234yhvasp2xejo2dacdp43bglke0cqriztpzdpk3uhw03c010c.1585124831854116
-	 * Color Modulate the player entity material and also do $ignorez
-	 * 
-	 * 
+	 * https://www.youtube.com/watch?v=tVltnnh2Dso
+	 * Color Modulate the player entity material
+	 * Set $ignorez flag in shader parameters
 	 * 
 	 * Maybe something to do with MaterialVarFlags_t
 	 * https://github.com/spirthack/CSGOSimple/blob/1cfdc3817790337c1110df6ad924ae0c15177660/CSGOSimple/valve_sdk/interfaces/IVModelRender.hpp
